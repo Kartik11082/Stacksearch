@@ -1,7 +1,6 @@
 # Imports
-import sys
 import requests
-
+import argparse
 
 # Colors and text styles for terminal texts
 UIElements = {
@@ -18,36 +17,50 @@ UIElements = {
 	"__CD"				:'\033[0m',
 }
 
-def make_request(args):
+
+def make_request(tag, query):
 	"""
 		Sends requests to Stackoverflow and return a JSON response.
 	"""
-	print("Searching in StackOverflow for " + UIElements['style__CBOLD'] + args)
-	stackoverflowURL = "https://api.stackexchange.com/"+"2.2/search?order=desc&tagged=python&sort=activity&intitle={}&site=stackoverflow".format(args)
+	print("Searching in StackOverflow for " + UIElements['style__CBOLD'] + query + UIElements['__CD'])
+	stackoverflowURL = "https://api.stackexchange.com/"+"2.2/search?order=desc&tagged={}&sort=activity&intitle={}&site=stackoverflow".format(tag, query)
 	resp  = requests.get(stackoverflowURL)
 	return resp.json()
 
 
-def printResults(items, cmdArgs):
-	print(UIElements['style__CITALIC'] + "Total results", len(items))
-	for item in items[:int(cmdArgs[1])]:
+def printResults(items, number):
+	print(UIElements['style__CITALIC'] + "Total results" + UIElements['__CD'], len(items))
+	for item in items[:number]:
 		print(UIElements['style__CBOLD'] + UIElements['color__CBEIGE'] + UIElements['style__CITALIC'] + UIElements['style__CSELECTED'] + "Title: ", item['title'] + UIElements['__CD'])
 		print(UIElements['style__CURL'] + UIElements['color__CBLUE'] + UIElements['style__CITALIC'] + "Link : ", item['link'] + UIElements['__CD'], end="\n\n")
-
+	return
 
 if __name__ == "__main__":
 	"""
+		Defines command line argument parser.
 		Inputs 'search query' and 'number of responses to return' from command line arguments.
 		Prints title and link to Stackoverflow pages.
 	"""
 	try:
-		cmdArgs = sys.argv[1:]
-		jsonResponse = make_request(cmdArgs[0])
+		# Create the parser
+		parser = argparse.ArgumentParser()
+
+		# Add an argument
+		parser.add_argument('-q', type=str, required=True)
+		parser.add_argument('-n', type=int, required=True)
+		parser.add_argument('-t', type=str, required=False, default="python")
+
+		# Parse the argument
+		args = parser.parse_args()
+
+		# Send request and print the json response
+		jsonResponse = make_request(args.t, args.q)
 		items = jsonResponse['items']
-		printResults(items, cmdArgs)
+		printResults(items, args.n)
+
 	except IndexError:
 		"""
 			If user doesn't enter any command line arguments.
 		"""
-		print(UIElements['color__CRED'] + "Command line arguments not entered" + UIElements['__CD'])
-		print(UIElements['color__CRED'] + "Command format: searchStack 'Query' number_of_reponses" + UIElements['__CD'])
+		# print(UIElements['color__CRED'] + "Command line arguments not entered" + UIElements['__CD'])
+		print(UIElements['color__CRED']+"Command format: searchStack \"Query\" number_of_reponse"+UIElements['__CD'])
