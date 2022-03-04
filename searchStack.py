@@ -31,8 +31,13 @@ def make_request(tag, query):
 def printResults(items, number):
 	print(UIElements['style__CITALIC'] + "Total results" + UIElements['__CD'], len(items))
 	for item in items[:number]:
-		print(UIElements['style__CBOLD'] + UIElements['color__CBEIGE'] + UIElements['style__CITALIC'] + UIElements['style__CSELECTED'] + "Title: ", item['title'] + UIElements['__CD'])
-		print(UIElements['style__CURL'] + UIElements['color__CBLUE'] + UIElements['style__CITALIC'] + "Link : ", item['link'] + UIElements['__CD'], end="\n\n")
+		print("\n", UIElements['style__CBOLD'] + UIElements['color__CBEIGE'] + UIElements['style__CITALIC'] + UIElements['style__CSELECTED'] + "Title: ", item['title'] + UIElements['__CD'])
+		print(UIElements['style__CURL'] + UIElements['color__CBEIGE'] + UIElements['style__CITALIC'] + "Link : ", item['link'] + UIElements['__CD'])
+		if (item['is_answered']):
+			print(UIElements['style__CITALIC'] + UIElements['color__Lime'] + 'Answered->', '\u2713' + UIElements['__CD'], end="\n")
+		else:
+			print(UIElements['color__CRED']  + UIElements['style__CITALIC'] + 'Answered->', '\u274C' + UIElements['__CD'], end="\n")
+
 	return
 
 if __name__ == "__main__":
@@ -56,6 +61,9 @@ if __name__ == "__main__":
 		# Send request and print the json response
 		jsonResponse = make_request(args.t, args.q)
 		items = jsonResponse['items']
+
+		# print(items)
+
 		printResults(items, args.n)
 
 	except IndexError:
