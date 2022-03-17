@@ -72,13 +72,8 @@ def main():
                 else:
                     q = input("Enter Query: ")
                     n = int(input("Enter number of responses: "))
-                    t = input("Enter tags(default: python): ")
-                    s = input("Enter site(default: stackoverflow): ")
-
-                    if t == "":
-                        t = "python"
-                    if s == "":
-                        s = "stackoverflow"
+                    t = input("Enter tags(default: python): ") or "python"
+                    s = input("Enter site(default: stackoverflow): ") or "stackoverflow"
 
                     jsonResponse = make_request(t, q, s)
                     items = jsonResponse['items']
