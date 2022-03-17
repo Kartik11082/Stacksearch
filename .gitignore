@@ -131,3 +131,4 @@ dmypy.json
 # Added
 searchStackenv/
 .gitignore.swp
+.searchStack.py.swp
