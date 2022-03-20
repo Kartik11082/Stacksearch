@@ -13,12 +13,12 @@ Stacksearch is a CLI tool for searching in Stack Exchange websites through termi
 
 ## Tech
 
-Dillinger uses a number of projects to work properly:
+Stacksearch uses a number of projects to work properly:
 
 - [Requests][requestsSite] - HTTP for Humans
 - [Argparse][argparseSite] - Parser for command-line options, arguments
 
-And of course Dillinger itself is open source with a [repository][githubPage]
+And of course Stacksearch itself is open source with a [repository][githubPage]
  on GitHub.
 
 ## Installation
