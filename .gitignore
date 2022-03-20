@@ -132,3 +132,5 @@ dmypy.json
 searchStackenv/
 .gitignore.swp
 .searchStack.py.swp
+*.yml
+*.gif
