@@ -2,12 +2,7 @@
 # Stacksearch
 ## _CLI tool Stack Exchange_
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
-AngularJS-powered HTML5 Markdown editor.
-
-- Type some Markdown on the left
-- See HTML in the right
-- ✨Magic ✨
+Stacksearch is a CLI tool for searching in Stack Exchange websites through terminal
 
 ## Features
 
@@ -36,6 +31,8 @@ Clone the repository in the startup directory of your terminal
 git clone https://github.com/Kartik11082/Stacksearch.git
 cd Stacksearch
 ```
+![cloning](https://user-images.githubusercontent.com/49190983/159106823-b894c7bf-5e51-4f31-b81e-b2ddd98fbefc.gif)
+
 
 Install all requirements
 
@@ -53,8 +50,12 @@ pip install -r requirement.txt
     - -t "_tags_": for tags
     - -s "_sitename_": for website name
 
-- ### Example commands
-    - 
+- ### Example
+- Searching in terminal
+![run](https://user-images.githubusercontent.com/49190983/159106838-b8489b47-8a14-4b52-b68f-ff2042e5013c.gif)
+- Input mode
+![inputmode](https://user-images.githubusercontent.com/49190983/159106854-e0911baa-bd30-41ab-9606-282d501da10f.gif)
+
 
 ## License
 
