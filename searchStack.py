@@ -14,7 +14,7 @@ UIElements = {
         "color__CBLUE"          :'\33[34m',
         "color__CRED"           :'\33[31m',
         "color__CREDBG"         :'\33[41m',
-        "__CD"                          :'\033[0m',
+        "__CD"                  :'\033[0m',
 }
 
 
